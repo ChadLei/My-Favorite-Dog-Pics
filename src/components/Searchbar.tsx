@@ -7,7 +7,6 @@ import Favorites from "./Favorites"
 import Image from "./Image"
 
 const Searchbar = () => {
-  const [imagelinks, setImagelinks] = useState([]);
   const [images, setImages] = useState([]);
   const [keyword, setKeyword] = useState("");
   const [favImages, setFavImages] = useState([]);
@@ -19,8 +18,7 @@ const Searchbar = () => {
 
   const searchAllImages = async (keyword) => {
     const response = await searchImages(keyword);
-    setImagelinks(response.data.message);
-    const imageObjects = imagelinks.map((link, index) => {
+    const imageObjects = response.data.message.map((link, index) => {
       let newImage = {
         url: link,
         id: index,
