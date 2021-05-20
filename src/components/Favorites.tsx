@@ -3,7 +3,6 @@ import Grid from "@material-ui/core/Grid";
 import styled from '@emotion/styled'
 import Heart from './Heart'
 
-
 const Favorites = ({images, toggleFav}) => {
   return (
     <Container>
