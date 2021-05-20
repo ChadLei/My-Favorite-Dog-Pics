@@ -15,8 +15,8 @@ const Favorites = ({images, toggleFav}) => {
       <Grid container spacing={3} className="grid">
         {images.map((image) => {
           const [fav, setFav] = useState(false);
-          const [heartIcon, setHeartIcon] = useState("whiteHeartIcon");
-          const [heartAlt, setHeartAlt] = useState("white heart icon");
+          const [heartIcon, setHeartIcon] = useState("redHeartIcon");
+          const [heartAlt, setHeartAlt] = useState("red heart icon");
           const handleClick = () => {
             setFav(!fav);
             toggleFav(image.id);
@@ -24,21 +24,23 @@ const Favorites = ({images, toggleFav}) => {
               setHeartIcon("redHeartIcon")
             }
             else {
-              setHeartIcon("whiteHeartIcon")
+              setHeartIcon("redHeartIcon")
             }
             if (heartAlt == "white heart icon") {
               setHeartAlt("red heart icon")
             }
             else {
-              setHeartAlt("white heart icon")
+              setHeartAlt("red heart icon")
             }
           };
           if (image.fav == true) {
             return (
               <Grid item xs={4} key={image.id}>
                 <div className={`${fav ? "fav" : ""}`} onClick={handleClick}>
-                  <img src={image.url} className="image"/>
-                  <Heart icon={heartIcon} alt={heartAlt} className="heart"/>
+                  <div className="imgBox">
+                    <img src={image.url} className="image"/>
+                    <Heart icon={heartIcon} alt={heartAlt} className="heart"/>
+                  </div>
                 </div>
               </Grid>
             );
