@@ -1,0 +1,57 @@
+.title {
+  display: flex;
+  padding-top: 30px;
+}
+
+.form {
+  padding-top: 50px;
+  display: flex;
+  /* justify-content: center; */
+  /* align-items: center; */
+  flex-wrap: wrap;
+  /* height:97px; */
+}
+
+.form-row {
+  flex: 3;
+}
+
+.form-control {
+  flex: 1;
+}
+
+.button {
+  flex: 1;
+}
+
+.grid {
+  padding-top: 50px;
+  /* width: 50%; */
+  margin: 0px;
+}
+
+.imgBox {
+  position: relative;
+  /* top: 0;
+  left: 0; */
+}
+
+.image {
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: 180px;
+  height: 180px;
+  /* padding: 0 5px 0 5px; */
+}
+
+.heart {
+  position: absolute;
+  bottom: 10%;
+  right: 5%;
+  /* background-color: green; */
+}
+
+.line {
+  height: 20;
+}

@@ -5,10 +5,11 @@ import { icons } from '../assets'
 interface Props {
   icon: string
   alt: string
+  className: string
 }
 
-const Heart: FC<Props> = ({ icon, alt }) => {
-  return <HeartIcon src={icons[icon]} alt={alt} />
+const Heart: FC<Props> = ({ icon, alt, className }) => {
+  return <HeartIcon src={icons[icon]} alt={alt} className={className}/>
 }
 
 const HeartIcon = styled.img({

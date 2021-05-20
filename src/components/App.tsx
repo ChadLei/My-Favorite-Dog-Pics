@@ -1,12 +1,14 @@
 import React, { FC } from 'react'
 import styled from '@emotion/styled'
 import Header from './Header'
+import Searchbar from './Searchbar'
 
 const App: FC = () => {
   return (
     <Container>
       <Header />
       {/* Happy coding! */}
+      <Searchbar />
     </Container>
   )
 }
