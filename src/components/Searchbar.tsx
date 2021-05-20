@@ -15,7 +15,6 @@ const Searchbar = () => {
   const handleSubmit = async e => {
     e.preventDefault();
     searchAllImages(keyword);
-
   };
 
   const searchAllImages = async (keyword) => {
