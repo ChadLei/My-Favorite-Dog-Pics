@@ -61,3 +61,6 @@ At any time, you can also run lint via `yarn lint`, and format your code via `ya
 - Make sure to add accurate typings!
 
 - Add some tests to verify that your components are working properly
+
+## Guides:
+- https://codeburst.io/global-state-with-react-hooks-and-context-api-87019cc4f2cf

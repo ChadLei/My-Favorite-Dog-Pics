@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Grid from "@material-ui/core/Grid";
 import styled from '@emotion/styled'
-import Heart from './Heart'
+import { Context } from "./Store"
+import Image from './Image';
+import Heart from './Heart';
 
 const Favorites = ({images, toggleFav}) => {
+  const [state, dispatch] = useContext(Context);
   return (
     <Container>
       <hr className="line"/>
@@ -12,39 +15,14 @@ const Favorites = ({images, toggleFav}) => {
         <Title>Favorites</Title>
       </div>
       <Grid container spacing={3} className="grid">
-        {images.map((image) => {
-          const [fav, setFav] = useState(false);
-          const [heartIcon, setHeartIcon] = useState("redHeartIcon");
-          const [heartAlt, setHeartAlt] = useState("red heart icon");
-          const handleClick = () => {
-            setFav(!fav);
-            toggleFav(image.id);
-            if (heartIcon == "whiteHeartIcon") {
-              setHeartIcon("redHeartIcon")
-            }
-            else {
-              setHeartIcon("redHeartIcon")
-            }
-            if (heartAlt == "white heart icon") {
-              setHeartAlt("red heart icon")
-            }
-            else {
-              setHeartAlt("red heart icon")
-            }
-          };
-          if (image.fav == true) {
-            return (
-              <Grid item xs={4} key={image.id}>
-                <div className={`${fav ? "fav" : ""}`} onClick={handleClick}>
-                  <div className="imgBox">
-                    <img src={image.url} className="image"/>
-                    <Heart icon={heartIcon} alt={heartAlt} className="heart"/>
-                  </div>
-                </div>
-              </Grid>
-            );
-          }
-        })}
+        {images.map(image =>
+          <Image
+            image={image}
+            toggleFav={toggleFav}
+            initialIcon="redHeartIcon"
+            initialAlt="red heart icon"
+          />
+        )}
       </Grid>
     </Container>
   );

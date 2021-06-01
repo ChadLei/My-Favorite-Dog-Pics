@@ -1,19 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styled from '@emotion/styled'
 import { Button, Col, Form } from 'react-bootstrap';
 import { searchImages } from "./request";
+import { Context } from "./Store"
 import "./styles.css"
 import Favorites from "./Favorites"
-import Image from "./Image"
+import ImageSection from "./ImageSection"
 
 const Searchbar = () => {
-  const [images, setImages] = useState([]);
+  const [state, dispatch] = useContext(Context);
   const [keyword, setKeyword] = useState("");
-  const [favImages, setFavImages] = useState([]);
 
   const handleSubmit = async e => {
     e.preventDefault();
     searchAllImages(keyword);
+    setKeyword("");
   };
 
   const searchAllImages = async (keyword) => {
@@ -21,23 +22,47 @@ const Searchbar = () => {
     const imageObjects = response.data.message.map((link, index) => {
       let newImage = {
         url: link,
-        id: index,
+        id: link,
         fav: false
       };
       return newImage;
     });
-    setImages(imageObjects);
+    dispatch({type: 'SET_IMAGES', payload: imageObjects});
   };
 
-  const toggleFav = (imageId) => {
-    const newImages = images.map(image => {
+  const toggleFav = (imageId, fav) => {
+    if (fav == false) {
+      const newImages = state.images.filter(image =>
+        image.id == imageId
+      )
+      dispatch({type: 'ADD_FAV', payload: newImages});
+    }
+    else {
+      const newImages = state.favImages.filter(image =>
+        image.id != imageId
+      )
+      dispatch({type: 'REMOVE_FAV', payload: newImages});
+    }
+  };
+
+  const favSectionToggle = (imageId, fav) => {
+    const images = state.images.map(image =>
       if (image.id == imageId) {
-        image.fav = !image.fav;
+        let newImage = {
+          url: image.url.replace(/^https?\:\/\//i, "http://");,
+          id: image.id.replace(/^https?\:\/\//i, "http://"),
+          fav: false
+        };
+        image = newImage;
       }
-      return image;
-    });
-    setImages(newImages);
-}
+      return image
+    );
+    dispatch({type: 'SET_IMAGES', payload: images});
+    const newImages = state.favImages.filter(image =>
+      image.id != imageId
+    )
+    dispatch({type: 'REMOVE_FAV', payload: newImages});
+  }
 
   return (
     <Container>
@@ -57,8 +82,8 @@ const Searchbar = () => {
           Search
         </Button>
       </Form>
-      <Image images={images} toggleFav={toggleFav} />
-      <Favorites images={images} toggleFav={toggleFav} />
+      <ImageSection images={state.images} toggleFav={toggleFav} />
+      <Favorites images={state.favImages} toggleFav={favSectionToggle} />
     </Container>
   );
 }
