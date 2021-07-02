@@ -27,7 +27,7 @@ const Image = ({image, toggleFav, initialIcon, initialAlt}) => {
     setFav(fav => false);
     setHeartIcon(initialIcon);
     setHeartAlt(initialAlt);
-  }, [image];
+  }, [image]);
   return (
     <Grid item xs={4} key={image.id}>
       <div className={`${fav ? "fav" : ""}`} onClick={handleClick}>

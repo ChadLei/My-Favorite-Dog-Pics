@@ -5,7 +5,7 @@ import Heart from './Heart'
 const Header: FC = () => {
   return (
     <Container>
-      <Title>Dog Breeds</Title>
+      <Title>My Favorite Dogs</Title>
       <Heart icon="redHeartIcon" alt="red heart icon" className="headerHeart"/>
     </Container>
   )

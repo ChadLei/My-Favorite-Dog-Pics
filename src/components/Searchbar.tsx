@@ -46,21 +46,19 @@ const Searchbar = () => {
   };
 
   const favSectionToggle = (imageId, fav) => {
-    const images = state.images.map(image =>
+    const images = state.images.map(image => {
       if (image.id == imageId) {
         let newImage = {
-          url: image.url.replace(/^https?\:\/\//i, "http://");,
+          url: image.url.replace(/^https?\:\/\//i, "http://"),
           id: image.id.replace(/^https?\:\/\//i, "http://"),
           fav: false
         };
         image = newImage;
       }
-      return image
-    );
+      return image;
+    });
     dispatch({type: 'SET_IMAGES', payload: images});
-    const newImages = state.favImages.filter(image =>
-      image.id != imageId
-    )
+    const newImages = state.favImages.filter(image => image.id != imageId)
     dispatch({type: 'REMOVE_FAV', payload: newImages});
   }
 
