@@ -18,7 +18,7 @@ const Searchbar = () => {
   };
 
   const searchAllImages = async (keyword) => {
-    const response = await searchImages(keyword);
+    const response = await searchImages(keyword.toLowerCase());
     const imageObjects = response.data.message.map((link, index) => {
       let newImage = {
         url: link,
@@ -72,7 +72,7 @@ const Searchbar = () => {
               name="keyword"
               value={keyword}
               onChange={e => setKeyword(e.target.value)}
-              placeholder="Search a Dog"
+              placeholder="Search a Dog ... (hound, shiba, etc.)"
             />
           </Form.Group>
         </Form.Row>
