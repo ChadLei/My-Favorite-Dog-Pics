@@ -2,6 +2,8 @@
 const merge = require('webpack-merge')
 const webpack = require('webpack')
 const commonConfig = require('./common')
+const path = require('path');
+
 
 module.exports = merge(commonConfig, {
   mode: 'development',
@@ -11,7 +13,9 @@ module.exports = merge(commonConfig, {
     './index.tsx', // the entry point of our app
   ],
   output: {
-    filename: 'bundle.js'
+    path: path.join(__dirname, '/dist'),
+    filename: 'bundle.js',
+    publicPath: '/',
   },
   devServer: {
     contentBase: '../dist',
