@@ -13,9 +13,7 @@ module.exports = merge(commonConfig, {
     './index.tsx', // the entry point of our app
   ],
   devServer: {
-    contentBase: path.join(__dirname, 'dist'),
     hot: true, // enable HMR on the server
-    port: 8080,
   },
   devtool: 'cheap-module-eval-source-map',
   plugins: [
