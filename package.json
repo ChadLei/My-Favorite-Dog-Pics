@@ -9,11 +9,11 @@
     "url": ""
   },
   "scripts": {
+    "build": "webpack --mode development",
     "lint": "tslint './src/**/*.ts*' --format stylish --project . --force",
     "start": "yarn run start-dev",
     "start-dev": "webpack-dev-server --config=configs/webpack/dev.js",
     "test": "jest --watch --coverage --config=configs/jest.config.js",
-    "build": "webpack"
   },
   "devDependencies": {
     "@babel/cli": "^7.6.4",
